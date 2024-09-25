@@ -7,8 +7,7 @@ export const AddFriendForm = ({
   onShowAddFriendForm,
 }) => {
   const [name, setName] = useState('');
-  // const [email, setEmail] = useState('');
-  const [id, setId] = useState('');
+  // const [id, setId] = useState('');
   const [image, setImage] = useState('https://i.pravatar.cc/48');
 
   const handleSubmit = (event) => {
@@ -18,8 +17,13 @@ export const AddFriendForm = ({
     if (!name || !image) {
       return;
     }
-    setId(newId);
-    const newFriend = { id, name, image, balance: parseFloat(0.0) };
+    // setId(newId);
+    const newFriend = {
+      id: newId,
+      name,
+      image: `${image}?=${newId}`,
+      balance: parseFloat(0.0),
+    };
     onSetFriends([...friends, newFriend]);
     onShowAddFriendForm((onShowAddFriendForm) => !onShowAddFriendForm);
   };
@@ -32,15 +36,6 @@ export const AddFriendForm = ({
         value={name}
         onChange={(event) => setName(event.target.value)}
       />
-
-      {/* <label>
-        Email:
-        <input
-          type="email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-        />
-      </label> */}
 
       <label> 🎅🏽Friend's Image URL</label>
       <input
